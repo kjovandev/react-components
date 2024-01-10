@@ -1,0 +1,15 @@
+.zooming-image-container 
+{
+    max-width: 100%;
+    max-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.zooming-image {
+    height: 100%;
+    width: 100%;
+    
+}
