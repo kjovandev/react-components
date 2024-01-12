@@ -4,7 +4,6 @@ import "./ZoomingImage.css"
 function ZoomingImage (props) {
     
     let baseScroll = null;
-
     useEffect(() => 
     {
         function isInViewport(element) {
@@ -32,9 +31,6 @@ function ZoomingImage (props) {
             document.querySelector(".zooming-image").style.minWidth = `${100 + (scrolled - baseScroll) * 0.8}%`
 
         }
-
-
-
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll",handleScroll)
     }, [])
@@ -45,8 +41,9 @@ function ZoomingImage (props) {
         <div className="zooming-image-container" >
             <img className="zooming-image" src={props.source} alt={props.alt}></img>
         </div>
-
      );
 }
 
-export default ZoomingImage ;
+export default ZoomingImage;
+
+// RAZLAGANJE PROJEKTA NA MANJE FUNKCIJE / KOMPONENTE I DEFINISANJE KOMPONENTI NA KRAJU.
