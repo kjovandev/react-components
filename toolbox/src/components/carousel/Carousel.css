@@ -38,7 +38,8 @@
     flex-direction: row;
     height: auto;
     max-width: 30vw;
-    transition: 0.6s transform ease;
+    transition: 0.6s transform ease-in;
+    
 }
 
 .carousel-image {
