@@ -2,6 +2,11 @@ import React, { Component, useEffect } from "react";
 import "./Carousel.css"
 import { logRoles } from "@testing-library/react";
 
+function sleep(time) {
+  return new Promise((resolve) => {
+      setTimeout(resolve, time || 1000);
+  });
+}
 
 function Carousel({ carouselItems = [] }) {
 
@@ -12,12 +17,16 @@ function Carousel({ carouselItems = [] }) {
     let carousel = document.querySelector('.carousel-sliding-div')
     let currentSlide = document.querySelectorAll('.carousel-slide-div')[1]
 
-    function moveSliderTo(index) {
+    async function moveSliderTo(index) {
       carousel.style.transition = `none`
       currentIndex = index
+      console.log(currentSlide.clientWidth)
+      while (currentSlide.clientWidth == 0) {
+        await sleep(10);
+      }
       carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
-      setTimeout(()=>carousel.style.transition = ``, 50 )
-
+      setTimeout(()=>carousel.style.transition = ``, 20 )
+      
     }
 
     function moveLeft() {
@@ -33,7 +42,7 @@ function Carousel({ carouselItems = [] }) {
       if (currentIndex == 0) {
         moveSliderTo(carouselItems.length -2)
       }
-      debounce = false}, 620)
+      debounce = false}, 201)
     }
     function moveRight() {
       if (debounce)
@@ -48,7 +57,7 @@ function Carousel({ carouselItems = [] }) {
         if (currentIndex == carouselItems.length - 1) {
           moveSliderTo(1)
         }
-        debounce = false}, 620)
+        debounce = false}, 201)
 
     }
     function handleKeyPress(event) {
@@ -71,7 +80,9 @@ function Carousel({ carouselItems = [] }) {
         console.log("jebemliga vise")
       }
     }
+    //setTimeout( ()=> {moveSliderTo(1)}, 100)
     moveSliderTo(1)
+    
 
     document.querySelectorAll(".button-left")[0].addEventListener("click", moveLeft)
     document.querySelectorAll(".button-right")[0].addEventListener("click", moveRight)

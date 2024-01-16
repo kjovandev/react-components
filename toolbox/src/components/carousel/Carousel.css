@@ -38,7 +38,7 @@
     flex-direction: row;
     height: auto;
     max-width: 30vw;
-    transition: 0.6s transform ease-in;
+    transition: 0.15s transform ease-in;
     
 }
 
