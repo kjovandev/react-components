@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from "react";
 import "./Carousel.css"
-import { logRoles } from "@testing-library/react";
 
 function sleep(time) {
   return new Promise((resolve) => {
@@ -20,7 +19,6 @@ function Carousel({ carouselItems = [] }) {
     async function moveSliderTo(index) {
       carousel.style.transition = `none`
       currentIndex = index
-      console.log(currentSlide.clientWidth)
       while (currentSlide.clientWidth == 0) {
         await sleep(10);
       }
@@ -36,8 +34,6 @@ function Carousel({ carouselItems = [] }) {
     debounce = true
     currentIndex--
     carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
-
-    console.log("idemo desno")
     setTimeout(() => {
       if (currentIndex == 0) {
         moveSliderTo(carouselItems.length -2)
@@ -51,8 +47,6 @@ function Carousel({ carouselItems = [] }) {
       debounce = true
       currentIndex++
       carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
-
-      console.log("idemo desno")
       setTimeout(() => {
         if (currentIndex == carouselItems.length - 1) {
           moveSliderTo(1)
@@ -69,18 +63,7 @@ function Carousel({ carouselItems = [] }) {
       else if (event.key === 'ArrowRight') {
         moveRight()
       }
-      else if (event.key === "ArrowUp") {
-
-        carouselItems.unshift(carouselItems.length - 3)
-
-
-
-      }
-      else {
-        console.log("jebemliga vise")
-      }
     }
-    //setTimeout( ()=> {moveSliderTo(1)}, 100)
     moveSliderTo(1)
     
 
@@ -103,10 +86,7 @@ function Carousel({ carouselItems = [] }) {
 
 
   const InitialisingItems = () => {
-    // another way to add to the beginning and end of the array
-    // carouselItems.push(carouselItems[0])
-    // carouselItems.unshift(carouselItems[carouselItems.length -2])
-    // console.log(carouselItems)
+  
 
     carouselItems = [carouselItems[carouselItems.length - 1], ...carouselItems, carouselItems[0]]
 
@@ -148,34 +128,3 @@ function Carousel({ carouselItems = [] }) {
 export default Carousel;
 
 
-
-
-// function moveLeft() {
-//   if (currentIndex == 0) {
-//     currentIndex = carouselItems.length - 1
-//     carousel.style.transition = `none`
-
-//   }
-//   else {
-//     currentIndex--
-
-//     carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
-//     carousel.style.transition = `0.6s transform ease`
-//   }
-
-//   console.log("idemo levo")
-// }
-// function moveRight() {
-//   if (currentIndex == carouselItems.length - 1) {
-//     currentIndex = 0
-//     carousel.style.transition = `none`
-//   }
-
-//   else {
-//     currentIndex++
-//     carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
-//     carousel.style.transition = `0.6s transform ease`
-//   }
-//   console.log("idemo levo")
-
-// }
