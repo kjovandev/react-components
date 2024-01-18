@@ -10,11 +10,11 @@ function sleep(time) {
 function Carousel({ carouselItems = [] }) {
 
   useEffect(() => {
+    
     let debounce = false
-
     let currentIndex = 0
     let carousel = document.querySelector('.carousel-sliding-div')
-    let currentSlide = document.querySelectorAll('.carousel-slide-div')[1]
+    let currentSlide = document.querySelectorAll('.carousel-slide-div')[0]
 
     async function moveSliderTo(index) {
       carousel.style.transition = `none`
