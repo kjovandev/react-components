@@ -33,7 +33,7 @@
     width: auto;
 }
 
-.carousel-sliding-div {
+.carousel-initialized-slides-div {
     display: flex;
     position: relative;
     flex-direction: row;

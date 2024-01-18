@@ -1,12 +1,15 @@
 import React, { Component, useEffect } from "react";
 import "./Spinner.css"
 
-function Spinner (props) {
-    
+function Spinner(props) {
+
     let baseScroll = null;
     let timeoutHandler
     let scrollInterval = 1000
-    const scrollSpeed = 0.2
+    
+    const scrollSpeed = 0.05
+
+
     function isInViewport(element) {
 
         const rect = element.getBoundingClientRect();
@@ -18,44 +21,41 @@ function Spinner (props) {
         );
     }
     function SpinSpinner() {
-        
+
         const scrolled = window.scrollY
         const spinner = document.querySelector(".spinner-container")
         spinner.style.transform = `rotate(${((scrolled - baseScroll) * scrollSpeed) % 360}deg)`
 
     }
     function AdjustScrool() {
-        const obican = window.scrollY - baseScroll
-        const scrolled = Math.floor((window.scrollY - baseScroll) * scrollSpeed)
+        const scrolled = (window.scrollY - baseScroll) * scrollSpeed
 
-        if (scrolled % 90 == 0){
+        if (scrolled % 90 == 0) {
             scrollInterval = 1000;
             return
         }
-        if(scrolled % 90 > 45){
+        if (scrolled % 90 > 45) {
             window.scrollTo(0, scrolled + 1)
         }
-        else{
+        else {
             window.scrollTo(0, scrolled - 1)
         }
         scrollInterval = 10
     }
-    useEffect(() => 
-    {
+    useEffect(() => {
         if (isInViewport(document.querySelector(".spinner-container")))
             baseScroll = 0;
 
         const handleScroll = () => {
-            if ((baseScroll == null) && !isInViewport(document.querySelector(".spinner-container"))){
+            if ((baseScroll == null) && !isInViewport(document.querySelector(".spinner-container"))) {
                 console.log("ne vidim ga")
                 return;
             }
-            if (baseScroll === null )
-            {
+            if (baseScroll === null) {
                 baseScroll = window.scrollY;
             }
             SpinSpinner()
-            if (timeoutHandler){
+            if (timeoutHandler) {
                 clearTimeout(timeoutHandler);
             }
 
@@ -65,16 +65,16 @@ function Spinner (props) {
 
         }
         window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll",handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
 
-    
-    return ( 
+
+    return (
         <div className="spinner-container" >
-            
+
         </div>
-     );
+    );
 }
 
 export default Spinner;

@@ -1,0 +1,43 @@
+.parallax-main-div
+  {
+    background-image: 'https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0';
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-content
+  {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+    height: 24rem;
+    backdrop-filter: blur(3px);
+  }
+
+  .first-paragraph-first-row 
+  {
+    font-size: 20vw;
+  }
+  .first-paragraph-second-row
+{
+  font-size: 6vw;
+}
+
+.first-paragraph {
+  line-height: 3rem;
+  
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.second-paragraph {
+  font-size: 3vw;
+  line-height: 3rem;
+  
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}

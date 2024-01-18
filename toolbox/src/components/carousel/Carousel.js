@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useRef } from "react";
 import "./Carousel.css"
 
 function sleep(time) {
@@ -8,12 +8,14 @@ function sleep(time) {
 }
 
 function Carousel({ carouselItems = [] }) {
-
+  let carouselRef = useRef(null)
+  let buttonLeftRef = useRef(null)
+  let buttonRightRef = useRef(null)
   useEffect(() => {
     
     let debounce = false
     let currentIndex = 0
-    let carousel = document.querySelector('.carousel-sliding-div')
+    let carousel = carouselRef.current
     let currentSlide = document.querySelectorAll('.carousel-slide-div')[0]
 
     async function moveSliderTo(index) {
@@ -33,7 +35,7 @@ function Carousel({ carouselItems = [] }) {
     
     debounce = true
     currentIndex--
-    carousel.style.transform = `translateX(-${currentIndex * currentSlide.clientWidth}px)`
+    carousel.style.transform = `translateX(-${(currentIndex * currentSlide.clientWidth) -5}px)`
     setTimeout(() => {
       if (currentIndex == 0) {
         moveSliderTo(carouselItems.length -2)
@@ -66,26 +68,20 @@ function Carousel({ carouselItems = [] }) {
     }
     moveSliderTo(1)
     
-
-    document.querySelectorAll(".button-left")[0].addEventListener("click", moveLeft)
-    document.querySelectorAll(".button-right")[0].addEventListener("click", moveRight)
+    console.log(document.querySelectorAll(".button-right"))
+    buttonLeftRef.current.addEventListener("click", moveLeft)
+    buttonRightRef.current.addEventListener("click", moveRight)
     window.addEventListener("keydown", handleKeyPress);
+    
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
 
-      document.querySelector(".button-left").removeEventListener("click", moveLeft);
-      document.querySelector(".button-right").removeEventListener("click", moveRight);
-
-
+      buttonLeftRef.current.removeEventListener("click", moveLeft);
+      buttonRightRef.current.removeEventListener("click", moveRight);
 
     };
   }, []);
-
-
-
-
-
-  const InitialisingItems = () => {
+  const InitializingItems = () => {
   
 
     carouselItems = [carouselItems[carouselItems.length - 1], ...carouselItems, carouselItems[0]]
@@ -102,21 +98,18 @@ function Carousel({ carouselItems = [] }) {
     })
 
   }
-
-
-
   return (
 
     <div className="carousel-main-div">
-      <button className="button-left"  >
+      <button ref={buttonLeftRef} className="button-left"  >
         <img className="button-png" src="/resources/arrow-left.png" />
       </button>
-      <button className="button-right"  >
+      <button ref={buttonRightRef} className="button-right"  >
         <img className="button-png" src="/resources/arrow-right.png" />
       </button>
-      <div className="carousel-sliding-div">
+      <div ref={carouselRef} className="carousel-initialized-slides-div">
 
-        {InitialisingItems()}
+        {InitializingItems()}
 
       </div>
 
@@ -128,3 +121,8 @@ function Carousel({ carouselItems = [] }) {
 export default Carousel;
 
 
+function random() {
+  return ( console.log("randomshit") );
+}
+
+export {random} ;
