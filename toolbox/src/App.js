@@ -4,7 +4,7 @@ import Spinner from "./components/Spinner/Spinner";
 import Carousel from "./components/carousel/Carousel";
 import "./index.css"
 import ScrollingImageBackground from "./components/scrollingImage/ScrollingImageBackground";
-
+var imageSourcePicsum = "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68"
 
 
 function App() {
@@ -64,7 +64,14 @@ function App() {
 
       <div className="app-main-div" >
 
-        <ScrollingImageBackground></ScrollingImageBackground>
+        <ScrollingImageBackground 
+        backgroundImageSource = {imageSourcePicsum}
+        picPositionPixels={0}
+        firstParagraphFirstRow="lorem ipsum"
+        firstParagraphSecondRow="ipsum lorem"
+        secondParagraph="lorem lorem ipsum ipsum"
+        
+        />
 
 
 

@@ -1,20 +1,28 @@
 .parallax-main-div
   {
-    background-image: 'https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0';
+    padding:0;
+    margin: 0;
     min-height: 100vh;
+    max-height: 100vw;
     min-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
   .text-content
   {
-    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    height:auto;
     width: auto;
-    height: 24rem;
-    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    padding: 1rem;
+    background: transparent;
+    backdrop-filter: blur(4px);
   }
 
   .first-paragraph-first-row 
@@ -25,6 +33,7 @@
 {
   font-size: 6vw;
 }
+
 
 .first-paragraph {
   line-height: 3rem;
@@ -40,4 +49,29 @@
   
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+}
+
+
+@media screen and (max-width: 768px) {
+.parallax-main-div {
+  position: relative;
+  min-height: 50vh;
+  max-height: 50vh;
+  width: auto;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  }
+  .first-paragraph-first-row 
+  {
+    font-size: 15vw;
+  }
+  .first-paragraph-second-row
+{
+  font-size: 4vw;
+}
+
 }
