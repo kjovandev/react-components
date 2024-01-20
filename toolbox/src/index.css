@@ -9,3 +9,9 @@ padding: 0;
  
 }
 
+
+header {
+  position: absolute;
+  padding: 10px;
+
+}
