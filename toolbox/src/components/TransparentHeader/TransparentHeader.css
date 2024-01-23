@@ -1,3 +1,15 @@
+.header-main-div {
+    padding:0;
+    margin:0;
+    background-color: lightgreen;
+    height: 3rem;
+    min-width: 100%;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .services {
     height: 2rem;
     width: 5rem;
@@ -10,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: fit-content;
+    height: 0;
 }
 .dropdown-menu service-button {
     height: 2rem;
