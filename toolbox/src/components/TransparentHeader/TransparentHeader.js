@@ -66,14 +66,14 @@ function TransparentHeader() {
     });
 
     useEffect(() => {
-        if (screenWidth < 700) {
+        if (screenWidth < 600) {
         console.log(screenWidth, "ovo je screen width");
-        hamburgerButton.current.style.width = "30px";
+        hamburgerButton.current.style.display = "block";
         // menuRef.current.style.display = "none"
         // hamburgerMenuRef.current.style.width = "0";
         // hamburgerButton.current.style.display = "none"
         } else {
-        hamburgerButton.current.style.width = "0px";
+        hamburgerButton.current.style.display = "none";
         // menuRef.current.style.display = ""
 
         }
@@ -92,53 +92,41 @@ function TransparentHeader() {
     return (
         <div className="header-main-div">
         <img className="image" src="/resources/arrow-left.png" alt="logo" />
-        <div ref={hamburgerMenuRef} className="hamburger-menu-div">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <div
-            onMouseEnter={handleMouseEnter}
-            onClick={handleMouseClick}
-            onMouseLeave={handleMouseLeave}
-            className="services"
-            >
-            Services
-            </div>
-        </div>
         <div  ref={menuRef} className="menu-div">
-            <a  ref={hamburgerBackButtonRef} className="back-button-hamburger-menu" onClick={handleHamburgerClick} >Back</a>
-            <a className="menu-item" href="/">Home</a>
-            <a className="menu-item" href="/about">About</a>
-            <a className="menu-item" href="/contact">Contact</a>
+            <div  ref={hamburgerBackButtonRef} className="back-button-hamburger-menu menu-item" onClick={handleHamburgerClick} >Back</div>
+            <div className="menu-item" href="/"><p>Home</p></div>
+            <div className="menu-item" href="/about"><p>About</p></div>
+            <div className="menu-item" href="/contact"><p>Contact</p></div>
             <div
             onMouseEnter={handleMouseEnter}
             onClick={handleMouseClick}
             onMouseLeave={handleMouseLeave}
-            className="services"
+            className="services menu-item"
             >
-            Services
+            <p>services</p>
+            <div ref={dropdownRef} className="dropdown-menu">
+            <div className="service-button first-service-button" href="/random">
+            Service 1
+            </div>
+            <div className="service-button" href="/random">
+            Service 2
+            </div>
+            <div className="service-button" href="/random">
+            Service 3
+            </div>
+            <div className="service-button" href="/random">
+            Service 4
+            </div>
+            <div className="service-button" href="/random">
+            Service 5
+            </div>
+            <div className="service-button" href="/random">
+            Service 6
             </div>
         </div>
-        <div ref={dropdownRef} className="dropdown-menu">
-            <a className="service-button" href="/random">
-            Service 1
-            </a>
-            <a className="service-button" href="/random">
-            Service 2
-            </a>
-            <a className="service-button" href="/random">
-            Service 3
-            </a>
-            <a className="service-button" href="/random">
-            Service 4
-            </a>
-            <a className="service-button" href="/random">
-            Service 5
-            </a>
-            <a className="service-button" href="/random">
-            Service 6
-            </a>
+            </div>
         </div>
+       
         <img
             ref={hamburgerButton}
             onClick={handleHamburgerClick}

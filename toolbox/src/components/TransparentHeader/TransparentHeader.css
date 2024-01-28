@@ -1,8 +1,13 @@
 .header-main-div {
-
-    padding:0;
+    /* text-transform: uppercase; */
+    color: white;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 2rem;
+    padding-right: 2rem;
     margin:0;
-    background-color: lightgreen;
+    background-color: black;
+    /* color is just for testing purposes  */
     height: 3rem;
     min-width: 90vw;
     min-height: 3rem;
@@ -11,28 +16,39 @@
     justify-content: space-between;
 }
 
+
 .back-button-hamburger-menu {
     display: none;
 }
 
 
-.services {
-    height: 2rem;
-    width: 5rem;
-    background-color: RED;
+.services{
+    height: auto;
 }
+
+
+
+.first-service-button{
+    padding-top: 1rem;
+}
+
 .dropdown-menu{
     overflow: hidden;
-    background-color: green;
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
     justify-content: center;
     height: 0;
+    position: absolute;
 }
-.dropdown-menu service-button {
+.service-button {
+
     height: 2rem;
     width: max-content;
+    
 }
 .hamburger-menu-div {
     background-color: violet;
@@ -46,6 +62,8 @@
     min-width: fit-content;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: end;
 
 }
 
@@ -53,10 +71,12 @@
     .back-button-hamburger-menu {
         display: flex;
     }
-    
-    
+    .header-main-div {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
     .menu-div {
-        
+        padding-top: 1rem;
         align-items: center;
         justify-content: center;
         position: fixed;
@@ -68,6 +88,11 @@
         flex-direction: column;
         background-color: aliceblue;
     }
+    .header-main-div {
+        color: black;
+    }
+
+
 }
 .image {
     height: 30px;
@@ -80,4 +105,7 @@
 
 .menu-item {
     margin: 1rem;
+    cursor: default;
+    align-items: center;
+    
 }
