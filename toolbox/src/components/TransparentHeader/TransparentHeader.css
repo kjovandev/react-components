@@ -1,14 +1,20 @@
 .header-main-div {
+
     padding:0;
     margin:0;
     background-color: lightgreen;
     height: 3rem;
-    min-width: 100%;
+    min-width: 90vw;
     min-height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+.back-button-hamburger-menu {
+    display: none;
+}
+
 
 .services {
     height: 2rem;
@@ -30,7 +36,38 @@
 }
 .hamburger-menu-div {
     background-color: violet;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+
     
+}
+.menu-div {
+    min-width: fit-content;
+    display: flex;
+    flex-direction: row;
+
+}
+
+@media (max-width: 600px) {
+    .back-button-hamburger-menu {
+        display: flex;
+    }
+    
+    
+    .menu-div {
+        
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        right: 0;
+        top: 0;
+        translate: +100% 0;
+        transition: transform 1s;
+        padding-inline: 3rem;
+        flex-direction: column;
+        background-color: aliceblue;
+    }
 }
 .image {
     height: 30px;
@@ -39,4 +76,8 @@
 .hamburger-button {
     width: 0;
     height: auto;
+}
+
+.menu-item {
+    margin: 1rem;
 }
