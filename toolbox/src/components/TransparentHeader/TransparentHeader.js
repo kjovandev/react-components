@@ -1,23 +1,39 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useHover } from 'usehooks-ts'
 import "./TransparentHeader.css";
-import { getSpaceUntilMaxLength } from "@testing-library/user-event/dist/utils";
 import userEvent from "@testing-library/user-event";
-import gsap from "gsap";
-import { unmountComponentAtNode } from "react-dom";
+import { random } from "gsap";
 function TransparentHeader() {
     const dropdownRef = useRef(null);
-    const hamburgerMenuRef = useRef(null);
+    const dropdownButtonRef = useRef(null);
     const hamburgerButton = useRef(null);
     const menuRef = useRef(null)
     const hamburgerBackButtonRef = useRef(null)
+    const dropdownButtonHover = useHover(dropdownButtonRef);
+    const dropdownHover = useHover(dropdownRef);    
     const [toggle, setToggle] = useState(false);
     const [hamburger, setHamburger] = useState(false);
-
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const updateScreenWidth = () => {
         setScreenWidth(window.innerWidth);
     };
+    useEffect(() => {
+        if (dropdownHover == false && dropdownButtonHover == false)
+        {
+            setToggle(false)
+            console.log("toggle je false")
+        }
+        else{
+            console.log("toggle je true")
+            console.log("butref is: ",dropdownButtonHover)
+            console.log("dropref is ", dropdownHover)
+            setToggle(true)
+        }
+
+
+    },[dropdownButtonHover, dropdownHover]);
+
     useEffect(() => {
         window.addEventListener("resize", updateScreenWidth);
 
@@ -26,83 +42,61 @@ function TransparentHeader() {
         };
     }, []);
 
+
+
     function handleHamburgerClick(){
         setHamburger(!hamburger)
     }
+    
 
-    function handleMouseClick() {
-        setToggle(!toggle);
-    }
+
+
+
+
     useEffect(() => {
-        if (toggle) {
-        gsap.to(dropdownRef.current, {
-            height: "auto",
-            duration: 0.3,
-            ease: "power1.Out",
-        });
-        } else {
-        gsap.to(dropdownRef.current, {
-            height: "0",
-            duration: 0.3,
-            ease: "power1.in",
-        });
+        if (toggle == true && screenWidth < 600) {
+            dropdownRef.current.style.transform = 'translateX(-200%)'
+        }
+        
+        else if (toggle == true && screenWidth >= 600)
+        {
+            dropdownRef.current.style.transform = 'translateY(+200%)'
+        }
+        else {
+            dropdownRef.current.style.transform = ''
         }
         if (hamburger) {
             menuRef.current.style.transform = 'translateX(-100%)'
-            // gsap.to(hamburgerMenuRef.current, {
-            //     width: "auto",
-            //     duration: 0.3,
-            //     ease: "power1.Out",
-            // });
+            setTimeout(() => {
+                console.log("buthov je",dropdownButtonHover[1])
+            console.log('drophov je', dropdownHover[1])
+            }, 3000);
         }
         else {
             menuRef.current.style.transform = ''
-            // gsap.to(hamburgerMenuRef.current, {
-            //     width: "0",
-            //     duration: 0.3,
-            //     ease: "power1.in",
-            // });
+
         }
     });
 
     useEffect(() => {
         if (screenWidth < 600) {
-        console.log(screenWidth, "ovo je screen width");
-        hamburgerButton.current.style.display = "block";
-        // menuRef.current.style.display = "none"
-        // hamburgerMenuRef.current.style.width = "0";
-        // hamburgerButton.current.style.display = "none"
+            hamburgerButton.current.style.display = "block";
         } else {
-        hamburgerButton.current.style.display = "none";
-        // menuRef.current.style.display = ""
-
+            hamburgerButton.current.style.display = "none";
         }
     }, [screenWidth]);
 
-    function handleMouseEnter() {
-        console.log(" u hovered");
-        setToggle(true);
-    }
 
-    function handleMouseLeave() {
-        console.log("u left");
-        setToggle(false);
-    }
 
     return (
         <div className="header-main-div">
-        <img className="image" src="/resources/arrow-left.png" alt="logo" />
+        <img className="logo-header" src="/resources/arrow-left.png" alt="logo" />
         <div  ref={menuRef} className="menu-div">
             <div  ref={hamburgerBackButtonRef} className="back-button-hamburger-menu menu-item" onClick={handleHamburgerClick} >Back</div>
             <div className="menu-item" href="/"><p>Home</p></div>
             <div className="menu-item" href="/about"><p>About</p></div>
             <div className="menu-item" href="/contact"><p>Contact</p></div>
-            <div
-            onMouseEnter={handleMouseEnter}
-            onClick={handleMouseClick}
-            onMouseLeave={handleMouseLeave}
-            className="services menu-item"
-            >
+            <div ref={dropdownButtonRef} className="services menu-item">
             <p>services</p>
             <div ref={dropdownRef} className="dropdown-menu">
             <div className="service-button first-service-button" href="/random">
@@ -130,7 +124,7 @@ function TransparentHeader() {
         <img
             ref={hamburgerButton}
             onClick={handleHamburgerClick}
-            src="/resources/arrow-left.png"
+            src="/resources/hamburgerGray.png"
             className="hamburger-svg"
             alt="menu"
         ></img>
@@ -139,10 +133,3 @@ function TransparentHeader() {
 }
 
 export default TransparentHeader;
-
-//     gsap.to(hamburgerMenuRef.current, {width: 'auto', duration:0.3, ease: "power1.Out"})
-// }
-// else{
-//     gsap.to(hamburgerMenuRef.current, {width: '0', duration:0.3, ease: "power1.in"})
-
-// }

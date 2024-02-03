@@ -20,7 +20,6 @@ function App() {
   }, []);
 
   
-  console.log(carouselItems)
   return (
     <div className="App" style={{ height: "3000px" }}>
 
