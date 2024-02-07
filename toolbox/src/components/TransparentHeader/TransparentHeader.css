@@ -1,5 +1,5 @@
 .header-main-div {
-    z-index: 2;
+    z-index: 10;
     /* text-transform: uppercase; */
     color: white;
     font-weight: 700;
@@ -40,8 +40,9 @@
 }
 
 .dropdown-menu{
+    
     margin: -2px;
-    z-index: -100;
+    z-index: -1;
     color: black;
     border: 1px solid black;
     position: absolute;
@@ -69,6 +70,7 @@
     
 }
 .menu-div {
+    z-index: 1 ;
     min-width: fit-content;
     display: flex;
     flex-direction: row;
